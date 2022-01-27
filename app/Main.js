@@ -1,6 +1,10 @@
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import CreatePost from './components/CreatePost'
+import Axios from 'axios'
+
+Axios.defaults.baseURL = 'http://localhost:8080'
 
 // My Components
 import Header from './components/Header'
@@ -9,6 +13,7 @@ import Home from './components/Home'
 import Footer from './components/Footer'
 import About from './components/About'
 import Terms from './components/Terms'
+import ViewSinglePost from './components/ViewSinglePost'
 
 function Main() {
   const [loggedIn, setLoggedIn] = useState(Boolean(localStorage.getItem('complexAppToken')))
@@ -18,6 +23,8 @@ function Main() {
       <Routes>
         <Route path="/" element={loggedIn ? <Home /> : <HomeGuest />} />
         <Route path="/about-us" element={<About />} />
+        <Route path="/create-post" element={<CreatePost />} />
+        <Route path="/post/:id" element={<ViewSinglePost />} />
         <Route path="/terms" element={<Terms />} />
       </Routes>
       <Footer />
