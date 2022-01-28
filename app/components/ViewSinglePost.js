@@ -3,6 +3,8 @@ import Page from './Page'
 import { Link } from 'react-router-dom'
 
 export default function ViewSinglePost() {
+  const timeCreated = new Date().toUTCString()
+
   return (
     <Page title="Example post">
       <div className="d-flex justify-content-between">
@@ -21,7 +23,7 @@ export default function ViewSinglePost() {
         <a href="#">
           <img className="avatar-tiny" src="https://www.gravatar.com/avatar/0bcdd2c3e59ec4a5be72e8d298444603" />
         </a>
-        Posted by <Link to="/post/:id">{localStorage.getItem('complexAppUsername')}</Link> on 2/10/2020
+        Posted by <Link to="/post/:id">{localStorage.getItem('complexAppUsername')}</Link> on {timeCreated}
       </p>
 
       <div className="body-content">

@@ -14,11 +14,13 @@ import Footer from './components/Footer'
 import About from './components/About'
 import Terms from './components/Terms'
 import ViewSinglePost from './components/ViewSinglePost'
+import FlashMessages from './components/FlashMessages'
 
 function Main() {
   const [loggedIn, setLoggedIn] = useState(Boolean(localStorage.getItem('complexAppToken')))
   return (
     <BrowserRouter>
+      <FlashMessages />
       <Header loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
       <Routes>
         <Route path="/" element={loggedIn ? <Home /> : <HomeGuest />} />
