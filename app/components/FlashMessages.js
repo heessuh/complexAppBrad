@@ -1,9 +1,15 @@
 import React from 'react'
 
-export default function FlashMessages() {
+export default function FlashMessages(props) {
   return (
     <div className="floating-alerts">
-      <div className="alert alert-success text-center floating-alert shadow-sm">Success. You´ve created a new post.</div>
+      {props.messages.map((msg, index) => {
+        return (
+          <div key={index} className="alert alert-success text-center floating-alert shadow-sm">
+            {msg}
+          </div>
+        )
+      })}
     </div>
   )
 }

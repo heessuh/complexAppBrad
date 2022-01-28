@@ -3,7 +3,7 @@ import Page from './Page'
 import Axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
-export default function CreatePost() {
+export default function CreatePost(props) {
   const [title, setTitle] = useState()
   const [body, setBody] = useState()
   const navigate = useNavigate()
@@ -16,6 +16,7 @@ export default function CreatePost() {
         body,
         token: localStorage.getItem('complexAppToken'),
       })
+      props.addFlashMessage('Congrats. You´ve successfully added a new post!')
       navigate(`/post/${response.data}`)
       console.log('A new post was created.')
     } catch (e) {
