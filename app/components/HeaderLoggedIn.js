@@ -1,16 +1,17 @@
 import React, { useEffect, useContext } from 'react'
 import { Link } from 'react-router-dom'
-import ExampleContext from '../ExampleContext'
+import DispatchContext from '../DispatchContext'
 
 function HeaderLoggedIn(props) {
-  const { setLoggedIn } = useContext(ExampleContext)
+  const appDispatch = useContext(DispatchContext)
 
   function handleLogout() {
-    setLoggedIn(false)
-    localStorage.removeItem('complexAppToken')
-    localStorage.removeItem('complexAppUsername')
-    localStorage.removeItem('complexAppAvatar')
+    appDispatch({ type: 'logout' })
+    localStorage.removeItem('complexappToken')
+    localStorage.removeItem('complexappUsername')
+    localStorage.removeItem('complexappAvatar')
   }
+
   return (
     <div className="flex-row my-3 my-md-0">
       <a href="#" className="text-white mr-2 header-search-icon">
