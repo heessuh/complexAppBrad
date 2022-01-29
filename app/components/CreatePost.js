@@ -2,29 +2,27 @@ import React, { useState, useContext } from 'react'
 import Page from './Page'
 import Axios from 'axios'
 import { useNavigate } from 'react-router-dom'
-import ExampleContext from '../ExampleContext'
+import DispatchContext from '../DispatchContext'
 
-export default function CreatePost(props) {
+function CreatePost(props) {
   const [title, setTitle] = useState()
   const [body, setBody] = useState()
   const navigate = useNavigate()
-  const addFlashMessage = useContext(ExampleContext)
+  const appDispatch = useContext(DispatchContext)
 
   async function handleSubmit(e) {
     e.preventDefault()
     try {
-      const response = await Axios.post('/create-post', {
-        title,
-        body,
-        token: localStorage.getItem('complexAppToken'),
-      })
-      addFlashMessage('Congrats!! You´ve successfully added a new post!!')
+      const response = await Axios.post('/create-post', { title, body, token: localStorage.getItem('complexappToken') })
+      // Redirect to new post url
+      appDispatch({ type: 'flashMessage', value: 'Congrats, you created a new post.' })
       navigate(`/post/${response.data}`)
-      console.log('A new post was created.')
+      console.log('New post was created.')
     } catch (e) {
-      console.log('There was a problem creating a post.')
+      console.log('There was a problem.')
     }
   }
+
   return (
     <Page title="Create New Post">
       <form onSubmit={handleSubmit}>
@@ -47,3 +45,5 @@ export default function CreatePost(props) {
     </Page>
   )
 }
+
+export default CreatePost

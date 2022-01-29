@@ -23,7 +23,7 @@ export default function ViewSinglePost() {
         <a href="#">
           <img className="avatar-tiny" src="https://www.gravatar.com/avatar/0bcdd2c3e59ec4a5be72e8d298444603" />
         </a>
-        Posted by <Link to="/post/:id">{localStorage.getItem('complexAppUsername')}</Link> on {timeCreated}
+        Posted by <Link to="/post/:id">{localStorage.getItem('complexappUsername')}</Link> on {timeCreated}
       </p>
 
       <div className="body-content">
