@@ -3,6 +3,7 @@ import Page from './Page'
 import StateContext from '../StateContext'
 import Axios from 'axios'
 import { useParams } from 'react-router-dom'
+import ProfilePosts from './ProfilePosts'
 
 export default function Profile() {
   const { username } = useParams()
@@ -38,10 +39,9 @@ export default function Profile() {
           Follow <i className="fas fa-user-plus"></i>
         </button>
       </h2>
-
       <div className="profile-nav nav nav-tabs pt-2 mb-4">
         <a href="#" className="active nav-item nav-link">
-          Posts: {profileData.counts.postCount}
+          Posts: {profileData.counts.postCount} 
         </a>
         <a href="#" className="nav-item nav-link">
           Followers: {profileData.counts.followerCount}
@@ -50,21 +50,7 @@ export default function Profile() {
           Following: {profileData.counts.followingCount}
         </a>
       </div>
-
-      <div className="list-group">
-        <a href="#" className="list-group-item list-group-item-action">
-          <img className="avatar-tiny" src={profileData.profileAvatar} /> <strong>Example Post #1</strong>
-          <span className="text-muted small">on 2/10/2020 </span>
-        </a>
-        <a href="#" className="list-group-item list-group-item-action">
-          <img className="avatar-tiny" src={profileData.profileAvatar} /> <strong>Example Post #2</strong>
-          <span className="text-muted small">on 2/10/2020 </span>
-        </a>
-        <a href="#" className="list-group-item list-group-item-action">
-          <img className="avatar-tiny" src={profileData.profileAvatar} /> <strong>Example Post #3</strong>
-          <span className="text-muted small">on 2/10/2020 </span>
-        </a>
-      </div>
+      <ProfilePosts />
     </Page>
   )
 }
